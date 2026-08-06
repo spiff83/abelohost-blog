@@ -1,0 +1,9 @@
+RewriteEngine On
+
+# Существующие CSS, изображения и другие файлы
+# Apache отдаёт напрямую, не передавая их PHP-приложению.
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+
+# Все остальные запросы обрабатывает единая точка входа.
+RewriteRule ^ index.php [QSA,L]

@@ -137,15 +137,18 @@ a {
     flex: 0 0 auto;
     min-height: 44px;
     padding: 10px 18px;
+    border: 0;
     display: inline-flex;
     align-items: center;
     justify-content: center;
     color: #ffffff;
     background: #1d6976;
     border-radius: 8px;
+    font: inherit;
     font-size: 14px;
     font-weight: 700;
     text-decoration: none;
+    cursor: pointer;
     transition:
         background-color 160ms ease,
         transform 160ms ease;
@@ -316,5 +319,224 @@ a {
 
     .button {
         width: 100%;
+    }
+}
+
+/* Страница категории */
+
+.category-page-header {
+    max-width: 760px;
+    margin-bottom: 40px;
+}
+
+.back-link {
+    margin-bottom: 34px;
+    display: inline-flex;
+    color: #1d6976;
+    font-size: 14px;
+    font-weight: 700;
+    text-decoration: none;
+}
+
+.back-link:hover {
+    text-decoration: underline;
+}
+
+.category-page-header h1 {
+    margin: 0;
+    color: #17323a;
+    font-size: clamp(38px, 6vw, 58px);
+    letter-spacing: -0.04em;
+    line-height: 1.05;
+}
+
+.category-page-header__description {
+    margin: 20px 0 0;
+    color: #5b6a71;
+    font-size: 18px;
+    line-height: 1.65;
+}
+
+.category-toolbar {
+    padding: 18px 20px;
+    margin-bottom: 28px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+    background: #ffffff;
+    border: 1px solid #dce5e7;
+    border-radius: 12px;
+}
+
+.category-toolbar__count {
+    margin: 0;
+    color: #5b6a71;
+}
+
+.category-toolbar__count strong {
+    color: #17323a;
+}
+
+.sort-form {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.sort-form label {
+    color: #5b6a71;
+    font-size: 14px;
+    font-weight: 650;
+}
+
+.sort-form select {
+    min-height: 44px;
+    padding: 8px 36px 8px 12px;
+    color: #26343a;
+    background: #ffffff;
+    border: 1px solid #cbd8db;
+    border-radius: 8px;
+    font: inherit;
+    font-size: 14px;
+}
+
+.sort-form select:focus {
+    border-color: #277786;
+    outline: 3px solid rgb(39 119 134 / 14%);
+}
+
+.pagination {
+    margin-top: 38px;
+    display: grid;
+    grid-template-columns: minmax(110px, 1fr) auto minmax(110px, 1fr);
+    align-items: center;
+    gap: 18px;
+}
+
+.pagination__pages {
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+}
+
+.pagination__page,
+.pagination__direction {
+    min-height: 42px;
+    padding: 8px 13px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    color: #1d6976;
+    background: #ffffff;
+    border: 1px solid #cfdddf;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 700;
+    text-decoration: none;
+}
+
+.pagination__direction:last-child {
+    justify-self: end;
+}
+
+.pagination__page:hover,
+.pagination__direction:hover {
+    border-color: #8fafb5;
+}
+
+.pagination__page--current {
+    color: #ffffff;
+    background: #1d6976;
+    border-color: #1d6976;
+}
+
+.pagination__direction--disabled {
+    color: #9ca9ae;
+    background: #eef2f3;
+    cursor: default;
+}
+
+.not-found {
+    max-width: 680px;
+    padding: 64px 44px;
+    margin-inline: auto;
+    background: #ffffff;
+    border: 1px solid #dce5e7;
+    border-radius: 14px;
+    text-align: center;
+}
+
+.not-found__code {
+    margin: 0;
+    color: #277786;
+    font-size: 72px;
+    font-weight: 800;
+    line-height: 1;
+}
+
+.not-found h1 {
+    margin: 18px 0 0;
+    color: #17323a;
+    font-size: clamp(32px, 5vw, 46px);
+}
+
+.not-found p:not(.not-found__code) {
+    margin: 16px 0 28px;
+    color: #5b6a71;
+}
+
+@media (max-width: 720px) {
+    .category-toolbar {
+        align-items: stretch;
+        flex-direction: column;
+    }
+
+    .sort-form {
+        align-items: stretch;
+        flex-direction: column;
+    }
+
+    .sort-form .button {
+        width: 100%;
+    }
+
+    .pagination {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .pagination__pages {
+        grid-column: 1 / -1;
+        grid-row: 1;
+    }
+
+    .pagination__direction {
+        grid-row: 2;
+    }
+}
+
+@media (max-width: 639px) {
+    .category-page-header {
+        margin-bottom: 30px;
+    }
+
+    .back-link {
+        margin-bottom: 26px;
+    }
+
+    .category-toolbar {
+        padding: 16px;
+    }
+
+    .pagination {
+        gap: 10px;
+    }
+
+    .pagination__direction {
+        min-width: 0;
+    }
+
+    .not-found {
+        padding: 42px 24px;
     }
 }
