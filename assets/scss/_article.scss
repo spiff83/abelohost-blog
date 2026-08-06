@@ -1,0 +1,126 @@
+@use 'tokens' as *;
+@use 'mixins' as *;
+
+/* Страница отдельной статьи */
+
+.article {
+    max-width: 860px;
+    margin-inline: auto;
+}
+
+.article__header {
+    max-width: 780px;
+    margin-bottom: 34px;
+}
+
+.article__categories {
+    margin-bottom: 20px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.category-chip {
+    padding: 6px 11px;
+    color: $color-primary;
+    background: #e8f1f3;
+    border-radius: 999px;
+    font-size: 13px;
+    font-weight: 700;
+    text-decoration: none;
+}
+
+.category-chip:hover {
+    background: #d6e8eb;
+}
+
+.article__header h1 {
+    margin: 0;
+    color: $color-heading;
+    font-size: clamp(38px, 6vw, 64px);
+    letter-spacing: -0.045em;
+    line-height: 1.06;
+}
+
+.article__description {
+    margin: 22px 0 0;
+    color: #596970;
+    font-size: 20px;
+    line-height: 1.65;
+}
+
+.article__meta {
+    margin-top: 22px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px 22px;
+    color: $color-meta;
+    font-size: 14px;
+}
+
+.article__image {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 16 / 9;
+    object-fit: cover;
+    border-radius: 14px;
+    box-shadow: $shadow-article;
+}
+
+.article__body {
+    max-width: 740px;
+    margin: 42px auto 0;
+    color: #34464d;
+    font-size: 18px;
+    line-height: 1.85;
+}
+
+.article__body p {
+    margin: 0 0 24px;
+}
+
+.article__body p:last-child {
+    margin-bottom: 0;
+}
+
+.related-posts {
+    margin-top: 82px;
+    padding-top: 54px;
+    border-top: 1px solid #d7e1e3;
+}
+
+.related-posts__header {
+    margin-bottom: 28px;
+}
+
+.related-posts__header h2 {
+    margin: 0;
+    color: $color-heading;
+    font-size: clamp(28px, 4vw, 38px);
+    letter-spacing: -0.03em;
+}
+
+@include respond-down($breakpoint-mobile) {
+    .article__header h1 {
+        font-size: 38px;
+    }
+
+    .article__description {
+        font-size: 17px;
+    }
+
+    .article__image {
+        border-radius: 10px;
+    }
+
+    .article__body {
+        margin-top: 30px;
+        font-size: 17px;
+        line-height: 1.75;
+    }
+
+    .related-posts {
+        margin-top: 58px;
+        padding-top: 40px;
+    }
+}

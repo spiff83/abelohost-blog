@@ -1,0 +1,41 @@
+// Основная палитра приложения.
+
+$color-text: #26343a;
+$color-heading: #17323a;
+$color-muted: #5b6a71;
+$color-meta: #718087;
+
+$color-page-background: #f5f7f8;
+$color-white: #ffffff;
+$color-border: #dce5e7;
+
+$color-primary: #1d6976;
+$color-primary-hover: #15545f;
+$color-accent: #277786;
+
+$color-header: #164f59;
+$color-footer: #123e47;
+$color-on-dark-muted: #d7e7ea;
+
+// Размеры и точки перестроения интерфейса.
+
+$content-width: 1120px;
+
+$breakpoint-tablet: 959px;
+$breakpoint-toolbar: 720px;
+$breakpoint-mobile: 639px;
+
+// Общие визуальные параметры.
+
+$font-sans:
+    Inter,
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    sans-serif;
+
+$transition-fast: 160ms ease;
+
+$shadow-card: 0 12px 32px rgb(25 56 64 / 7%);
+$shadow-card-hover: 0 18px 42px rgb(25 56 64 / 11%);
+$shadow-article: 0 16px 44px rgb(25 56 64 / 10%);

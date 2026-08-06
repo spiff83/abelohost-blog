@@ -1,6 +1,17 @@
 name: abelohost-blog
 
 services:
+  assets:
+    image: node:22-alpine
+    working_dir: /workspace
+    user: "${HOST_UID:-1000}:${HOST_GID:-1000}"
+    environment:
+      HOME: /tmp
+    volumes:
+      - ./:/workspace
+    profiles:
+      - tools
+
   app:
     build:
       context: .
