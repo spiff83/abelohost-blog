@@ -28,3 +28,11 @@ WORKDIR /var/www/html
 
 # Исходники подмонтированы с хоста, так что владелец каталога отличается от пользователя, делающего CLI-команды в контейнере.
 RUN git config --system --add safe.directory /var/www/html
+
+# Служебные каталоги Smarty заранее создаются и принадлежат пользователю Apache.
+# Это нужно чтоб порядок запуска HTTP- и CLI-команд не влиял на права.
+RUN mkdir -p \
+        /tmp/abelohost-blog/smarty/templates_c \
+        /tmp/abelohost-blog/smarty/cache \
+    && chown -R www-data:www-data /tmp/abelohost-blog \
+    && chmod -R 0775 /tmp/abelohost-blog

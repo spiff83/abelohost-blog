@@ -37,26 +37,10 @@ foreach ([$smartyCompilePath, $smartyCachePath] as $directory) {
 }
 
 /*
- * Подключение к MySQL создаётся один раз при инициализации приложения.
- * Контроллеры и репозитории уже потом будут получать готовый PDO-объект.
+ * Веб-приложение использует общее подключение к базе,
+ * которое также доступно CLI-командам.
  */
-$dsn = sprintf(
-    'mysql:host=%s;port=%s;dbname=%s;charset=utf8mb4',
-    getenv('DB_HOST'),
-    getenv('DB_PORT'),
-    getenv('DB_DATABASE')
-);
-
-$pdo = new PDO(
-    $dsn,
-    (string) getenv('DB_USERNAME'),
-    (string) getenv('DB_PASSWORD'),
-    [
-        PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
-        PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
-        PDO::ATTR_EMULATE_PREPARES => false,
-    ]
-);
+$pdo = require $projectRoot . '/app/database.php';
 
 /*
  * Smarty отвечает только за представление.

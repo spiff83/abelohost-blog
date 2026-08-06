@@ -2,17 +2,16 @@
 
 declare(strict_types=1);
 
-use Smarty\Smarty;
-
 if (PHP_SAPI !== 'cli') {
     http_response_code(404);
     exit;
 }
 
-/** @var array{pdo: PDO, smarty: Smarty} $application */
-$application = require dirname(__DIR__) . '/app/bootstrap.php';
-
-$pdo = $application['pdo'];
+/*
+ * Сидеру требуется только PDO. Smarty и служебные каталоги
+ * шаблонизатора при запуске CLI-команды не инициализируются.
+ */
+$pdo = require dirname(__DIR__) . '/app/database.php';
 $options = getopt('', ['fresh']);
 $fresh = array_key_exists('fresh', $options);
 
