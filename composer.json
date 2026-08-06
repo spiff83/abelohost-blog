@@ -1,0 +1,20 @@
+{
+    "name": "spiff83/abelohost-blog",
+    "description": "Тестовое задание: блог на чистом PHP, MySQL и Smarty",
+    "type": "project",
+    "license": "proprietary",
+    "require": {
+        "php": "^8.1",
+        "ext-pdo": "*",
+        "ext-pdo_mysql": "*",
+        "smarty/smarty": "^5.8"
+    },
+    "autoload": {
+        "psr-4": {
+            "App\\": "app/"
+        }
+    },
+    "config": {
+        "sort-packages": true
+    }
+}
