@@ -1,33 +1,53 @@
 {extends file='layout.tpl'}
 
 {block name='content'}
-    <section class="environment-check">
-        <p class="environment-check__label">
-            Окружение пашет
+    <section class="page-intro">
+        <p class="eyebrow">Практический блог</p>
+
+        <h1>Разработка, базы данных и инфраструктура</h1>
+
+        <p class="page-intro__description">
+            Статьи о создании и поддержке веб-приложений:
+            от чистого PHP и SQL до Docker и клиентской разработки.
         </p>
-
-        <h1>Блог на чистом PHP</h1>
-
-        <p class="environment-check__intro">
-            Smarty работает.
-            Подключение к MySQL тоже работает.
-        </p>
-
-        <dl class="environment-list">
-            <div class="environment-list__item">
-                <dt>PHP</dt>
-                <dd>{$phpVersion}</dd>
-            </div>
-
-            <div class="environment-list__item">
-                <dt>MySQL</dt>
-                <dd>{$mysqlVersion}</dd>
-            </div>
-
-            <div class="environment-list__item">
-                <dt>Smarty</dt>
-                <dd>{$smartyVersion}</dd>
-            </div>
-        </dl>
     </section>
+
+    {if $categories}
+        <div class="category-list">
+            {foreach $categories as $category}
+                <section class="category-section">
+                    <div class="category-section__header">
+                        <div class="category-section__heading">
+                            <p class="eyebrow">Категория</p>
+
+                            <h2>{$category.name}</h2>
+
+                            <p>{$category.description}</p>
+                        </div>
+
+                        <a
+                            class="button"
+                            href="/category/{$category.slug}"
+                        >
+                            Все статьи
+                        </a>
+                    </div>
+
+                    <div class="post-grid">
+                        {foreach $category.posts as $post}
+                            {include
+                                file='partials/post-card.tpl'
+                                post=$post
+                            }
+                        {/foreach}
+                    </div>
+                </section>
+            {/foreach}
+        </div>
+    {else}
+        <div class="empty-state">
+            <h2>Статей пока нет</h2>
+            <p>После добавления публикаций они появятся на этой странице.</p>
+        </div>
+    {/if}
 {/block}

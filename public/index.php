@@ -2,6 +2,8 @@
 
 declare(strict_types=1);
 
+use App\Controller\HomeController;
+use App\Repository\CategoryRepository;
 use Smarty\Smarty;
 
 try {
@@ -12,30 +14,24 @@ try {
     $smarty = $application['smarty'];
 
     /*
-     * Это пока только для проверки окружения.
-     * Когда сделаю таблицы, главная будет брать из БД категории и последние статьи.
+     * Пока в приложении реализована только главная страница.
+     * На следующем этапе здесь появится простая маршрутизация
+     * страниц категорий и отдельных статей.
      */
-    $mysqlVersion = $pdo
-        ->query('SELECT VERSION()')
-        ->fetchColumn();
+    $controller = new HomeController(
+        new CategoryRepository($pdo),
+        $smarty
+    );
 
-    $smarty->assign([
-        'pageTitle' => 'AbeloHost Blog — окружение готово',
-        'phpVersion' => PHP_VERSION,
-        'mysqlVersion' => (string) $mysqlVersion,
-        'smartyVersion' => Smarty::SMARTY_VERSION,
-        'currentYear' => date('Y'),
-    ]);
-
-    $smarty->display('home.tpl');
+    $controller->index();
 } catch (Throwable $exception) {
-
     /*
-     * Все в лог!
+     * Посетителю не показываем реквизиты подключения, SQL
+     * и другие внутренние подробности приложения.
      */
     error_log($exception->__toString());
 
     http_response_code(500);
 
-    echo 'Не удалось запустить приложение. Подробности записаны в журнал.';
+    echo 'Не удалось выполнить запрос. Подробности записаны в журнал.';
 }

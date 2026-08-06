@@ -14,7 +14,7 @@
             <a class="site-logo" href="/">AbeloHost Blog</a>
 
             <span class="site-header__description">
-                Тестовое задание
+                PHP · MySQL · Smarty
             </span>
         </div>
     </header>
@@ -25,7 +25,7 @@
 
     <footer class="site-footer">
         <div class="container">
-            PHP, MySQL и Smarty · {$currentYear}
+            Тестовое задание · {$currentYear}
         </div>
     </footer>
 </body>

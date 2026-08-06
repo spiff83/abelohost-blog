@@ -8,6 +8,8 @@ require dirname(__DIR__) . '/vendor/autoload.php';
 
 $projectRoot = dirname(__DIR__);
 
+require_once $projectRoot . '/app/helpers.php';
+
 /*
  * Скомпилированные шаблоны и кэш буду хранить во временном каталоге, чтобы Apache мог свободно
  * править без проблем с правами на каталог.
@@ -68,6 +70,25 @@ $smarty
     ->setCompileDir($smartyCompilePath)
     ->setCacheDir($smartyCachePath)
     ->setEscapeHtml(true);
+
+/*
+ * Модификатор для склонения существительных сразу в шаблонах,
+ */
+$smarty->registerPlugin(
+    'modifier',
+    'plural_ru',
+    static fn (
+        mixed $number,
+        string $one,
+        string $few,
+        string $many
+    ): string => pluralizeRussian(
+        (int) $number,
+        $one,
+        $few,
+        $many
+    )
+);
 
 return [
     'pdo' => $pdo,
