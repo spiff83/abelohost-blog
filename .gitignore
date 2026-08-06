@@ -1,0 +1,16 @@
+# Локальное окружение
+.env
+
+# Зависимости
+/vendor/
+/node_modules/
+
+# Временные файлы Smarty
+/storage/smarty/cache/*
+/storage/smarty/templates_c/*
+
+# Настройки редакторов и системные файлы
+/.idea/
+/.vscode/
+.DS_Store
+Thumbs.db
