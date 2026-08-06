@@ -6,6 +6,11 @@
 
     <title>{$pageTitle|default:'AbeloHost Blog'}</title>
 
+	<meta
+		name="description"
+		content="{$pageDescription|default:'Практические статьи о PHP, MySQL, JavaScript и разработке веб-приложений.'}"
+	>
+
     <link rel="stylesheet" href="/assets/css/app.css">
 </head>
 <body>

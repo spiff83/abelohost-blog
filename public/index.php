@@ -5,7 +5,9 @@ declare(strict_types=1);
 use App\Controller\CategoryController;
 use App\Controller\ErrorController;
 use App\Controller\HomeController;
+use App\Controller\PostController;
 use App\Repository\CategoryRepository;
+use App\Repository\PostRepository;
 use Smarty\Smarty;
 
 try {
@@ -16,11 +18,11 @@ try {
     $smarty = $application['smarty'];
 
     $categoryRepository = new CategoryRepository($pdo);
+    $postRepository = new PostRepository($pdo);
     $errorController = new ErrorController($smarty);
 
     /*
-     * Для трёх публичных маршрутов отдельный универсальный Router
-     * усложнил бы проект без практической пользы.
+     * В задаче - 3 public маршрута. Думаю, отдельный универсальный Routerтут не имеет практической пользы.
      */
     $requestUri = (string) ($_SERVER['REQUEST_URI'] ?? '/');
     $parsedPath = parse_url($requestUri, PHP_URL_PATH);
@@ -58,12 +60,27 @@ try {
         return;
     }
 
+    if (
+        preg_match(
+            '#^/post/([a-z0-9-]+)$#',
+            $path,
+            $matches
+        ) === 1
+    ) {
+        $controller = new PostController(
+            $postRepository,
+            $errorController,
+            $smarty
+        );
+
+        $controller->show($matches[1]);
+
+        return;
+    }
+
     $errorController->notFound();
 } catch (Throwable $exception) {
-    /*
-     * Посетителю не показываем SQL, реквизиты подключения
-     * и другие внутренние подробности приложения.
-     */
+
     error_log($exception->__toString());
 
     http_response_code(500);
